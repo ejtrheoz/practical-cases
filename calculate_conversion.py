@@ -1,6 +1,10 @@
+import matplotlib
+import seaborn
 import pandas
 
-data = pandas.read_csv('/datasets/app_stats.csv')
+matplotlib.rcParams['figure.figsize'] = [15, 7] # указываем размер графика
 
-conversion = data['payments'] / data['installs']
-print(conversion.tail(8) * 600)
+data = pandas.read_csv('app_stats.csv')
+conversions = data['payments'] / data['installs']
+
+seaborn.barplot(x=data['week_number'], y=conversions)
